@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: auth-service
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth-service-db
+    username: user
+    password: 1
+
+jwt:
+  secret: some_secret_code_aasdk;j1239;lkasf9o8
+  expiration: 1200000
+
+logging:
+  level:
+    org:
+      springframework:
+        transaction: DEBUG
+        jdbc:
+          core: DEBUG
