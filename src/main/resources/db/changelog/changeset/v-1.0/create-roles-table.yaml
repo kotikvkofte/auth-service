@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-roles-table
+      author: Артём Краковцев
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: varchar(50)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: text
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: true

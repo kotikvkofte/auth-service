@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users-table
+      author: Артём Краковцев
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: text
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: text
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: create_date
+                  type: timestamp
+                  defaultValue: now
+                  constraints:
+                    nullable: false

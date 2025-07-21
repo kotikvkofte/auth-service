@@ -1,0 +1,101 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-roles-table
+      author: Артём Краковцев
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: USER
+              - column:
+                  name: name
+                  value: Пользователь
+              - column:
+                  name: description
+                  value: Может просматривать, но не редактировать, справочную информацию (ui/contractor/county/all, ui/deal/deal-status и тд)
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: CREDIT_USER
+              - column:
+                  name: name
+                  value: Пользователь (кредит)
+              - column:
+                  name: description
+                  value: Может все тоже самое что USER, плюс просматривать сделки (REST POST/deal/search) с deal_type = CREDIT
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: OVERDRAFT_USER
+              - column:
+                  name: name
+                  value: Пользователь (овердрафт)
+              - column:
+                  name: description
+                  value: Может все тоже самое что USER, плюс может просматривать сделки (REST POST ui/deal/search) с deal_type = OVERDRAFT
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: DEAL_SUPERUSER
+              - column:
+                  name: name
+                  value: Пользователь (доступ к сделкам)
+              - column:
+                  name: description
+                  value: Может все тоже самое что USER, плюс имеет полный доступ к сервису deal
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: CONTRACTOR_RUS
+              - column:
+                  name: name
+                  value: Пользователь (RUS контрагенты)
+              - column:
+                  name: description
+                  value: Может все тоже самое что USER, плюс может просматривать контрагентов (REST POST ui/contractor/search) с country = RUS
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: CONTRACTOR_SUPERUSER
+              - column:
+                  name: name
+                  value: Пользователь (доступ к контрагентам)
+              - column:
+                  name: description
+                  value: Может все тоже самое что USER, плюс имеет полный доступ к сервису contractor
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: SUPERUSER
+              - column:
+                  name: name
+                  value: Супер-пользователь
+              - column:
+                  name: description
+                  value: Имеет полный доступ к сервисам deal и contractor
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: ADMIN
+              - column:
+                  name: name
+                  value: Админ
+              - column:
+                  name: description
+                  value: Имеет полный доступ к сервису auth, но не имеет доступа к сервисам deal и contractor
