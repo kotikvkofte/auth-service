@@ -8,9 +8,16 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * DTO для изменения списка ролей пользователя.
+ * @author Краковцев Артём
+ */
 @Data
 public class UserRoleRequestDto {
 
+    /**
+     * Логин пользователя,
+     */
     @NotBlank(message = "User login must not be null")
     @Schema(description = "Login of the user to assign roles to",
             example = "user1",
@@ -18,6 +25,9 @@ public class UserRoleRequestDto {
     )
     private String userLogin;
 
+    /**
+     * Список ролей, которыми будет обладать пользователь.
+     */
     @NotEmpty(message = "Roles array must not be empty")
     @ArraySchema(
             schema = @Schema(description = "List of role ID's",

@@ -8,14 +8,24 @@ import org.ex9.authservice.entity.Role;
 
 import java.util.Set;
 
+/**
+* DTO для отображения списка ролей пользователя.
+ * @author Краковцев Артём
+ */
 @Data
 @Builder
 @Schema(description = "Response containing user roles")
 public class UserRoleResponseDto {
 
+    /**
+     * Логин пользователя.
+     */
     @Schema(description = "User login", example = "user1")
     private String userLogin;
 
+    /**
+     * Список ролей, которыми владеет пользователь.
+     */
     @ArraySchema(
             schema = @Schema(description = "List of role identifiers", example = "USER")
     )
