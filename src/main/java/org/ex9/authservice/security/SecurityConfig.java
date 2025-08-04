@@ -3,6 +3,7 @@ package org.ex9.authservice.security;
 import lombok.RequiredArgsConstructor;
 import org.ex9.authservice.security.jwt.JwtAuthenticationFilter;
 import org.ex9.authservice.security.jwt.JwtService;
+import org.ex9.authservice.security.oauth.OAuth2SuccessHandler;
 import org.ex9.authservice.security.services.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,8 @@ public class SecurityConfig {
      */
     private final JwtService jwtService;
 
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
+
     /**
      * Сервис для загрузки данных пользователя.
      */
@@ -51,10 +54,18 @@ public class SecurityConfig {
                                 .requestMatchers("/auth/signup",
                                         "/auth/signin",
                                         "/swagger-ui/**",
-                                        "v3/api-docs/**")
+                                        "v3/api-docs/**",
+                                        "/login",
+                                        "/login/success",
+                                        "/js/**")
                                 .permitAll()
                                 .anyRequest().authenticated()
                         )
+                .oauth2Login(login -> login
+                        .loginPage("/login")
+                        .successHandler(oAuth2SuccessHandler)
+                )
+                .formLogin(AbstractHttpConfigurer::disable)
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(new JwtAuthenticationFilter(jwtService, userDetailsService),

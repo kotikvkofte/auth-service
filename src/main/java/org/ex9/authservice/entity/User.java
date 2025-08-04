@@ -41,7 +41,7 @@ public class User {
     @Column(name = "login", nullable = false, length = Integer.MAX_VALUE)
     private String login;
 
-    @NotNull
+//    @NotNull
     @Column(name = "password", nullable = false, length = Integer.MAX_VALUE)
     private String password;
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Авторизация</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>Вход</h2>
+
+<form id="login-form">
+    <label>Логин:</label><br>
+    <input type="text" id="loginForm" required><br>
+
+    <label>Пароль:</label><br>
+    <input type="password" id="passwordForm" required><br><br>
+
+    <button id="loginBtn" type="button" th:onclick="loginClick()">Войти</button>
+</form>
+
+<br>
+
+<h3>или авторизуйтесь через Google:</h3>
+<a th:href="@{/oauth2/authorization/google}">
+    <button>Войти через Google</button>
+</a>
+
+<script type="text/javascript" th:src="@{/js/login.js}"></script>
+</body>
+</html>
